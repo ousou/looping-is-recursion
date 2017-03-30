@@ -51,7 +51,12 @@
       (recur (toggle parity-set (first seq1)) (rest seq1)))))
 
 (defn fast-fibo [n]
-  ":(")
+  (loop [curr-n (dec (dec n))
+         fib-n 1
+         fib-nm1 0]
+    (cond (zero? n) 0
+          (<= curr-n 0) (+ fib-n fib-nm1)
+          :else (recur (dec curr-n) (+ fib-n fib-nm1) fib-n))))
 
 (defn cut-at-repetition [a-seq]
   [":("])
