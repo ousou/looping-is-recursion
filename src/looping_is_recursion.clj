@@ -12,13 +12,18 @@
 
 (defn last-element [a-seq]
   (let [helper (fn [a-seq]
-                (if (or (empty? a-seq) (singleton? a-seq))
-                  (first a-seq)
-                  (recur (rest a-seq))))]
+                 (if (or (empty? a-seq) (singleton? a-seq))
+                   (first a-seq)
+                   (recur (rest a-seq))))]
   (helper a-seq)))
 
 (defn seq= [seq1 seq2]
-  ":(")
+  (let [helper (fn [a-seq b-seq]
+                (cond (and (empty? a-seq) (empty? b-seq)) true
+                      (or (empty? a-seq) (empty? b-seq)) false
+                      (= (first a-seq) (first b-seq)) (recur (rest a-seq) (rest b-seq))
+                      :else false))]
+  (helper seq1 seq2)))
 
 (defn find-first-index [pred a-seq]
   ":(")
