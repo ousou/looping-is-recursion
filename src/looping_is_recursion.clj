@@ -26,7 +26,11 @@
   (helper seq1 seq2)))
 
 (defn find-first-index [pred a-seq]
-  ":(")
+  (loop [seq1 a-seq
+         index 0]
+    (cond (empty? seq1) nil
+          (pred (first seq1)) index
+          :else (recur (rest seq1) (inc index)))))
 
 (defn avg [a-seq]
   -1)
