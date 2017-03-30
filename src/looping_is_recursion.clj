@@ -59,5 +59,10 @@
           :else (recur (dec curr-n) (+ fib-n fib-nm1) fib-n))))
 
 (defn cut-at-repetition [a-seq]
-  [":("])
+  (loop [seq1 a-seq
+         occured-set #{}
+         index 0]
+    (cond (empty? seq1) (take index a-seq)
+          (contains? occured-set (first seq1)) (take index a-seq)
+          :else (recur (rest seq1) (conj occured-set (first seq1)) (inc index)))))
 
