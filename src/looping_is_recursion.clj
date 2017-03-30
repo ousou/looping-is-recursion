@@ -33,10 +33,22 @@
           :else (recur (rest seq1) (inc index)))))
 
 (defn avg [a-seq]
-  -1)
+  (loop [seq1 a-seq
+         sum 0
+         amount 0]
+    (if (empty? seq1)
+      (/ sum amount)
+      (recur (rest seq1) (+ sum (first seq1)) (inc amount)))))
+
+(defn toggle [a-set elem]
+  (if (contains? a-set elem) (disj a-set elem) (conj a-set elem)))
 
 (defn parity [a-seq]
-  ":(")
+  (loop [parity-set #{}
+         seq1 a-seq]
+    (if (empty? seq1)
+      parity-set
+      (recur (toggle parity-set (first seq1)) (rest seq1)))))
 
 (defn fast-fibo [n]
   ":(")
